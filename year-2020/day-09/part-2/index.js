@@ -3,36 +3,37 @@ const contestResponse = input => {
 
     // test 1 invalidNumber = 127
     // test final invalidNumber = 1124361034
-    const invalidNumber = 1124361034
+    const invalidNumber = Number(input[0])
+    let data = input.slice(2)
     let startIndex = 0
     let index = startIndex + 1
     let foundWeakness = false
-    let min = Number(input[startIndex])
-    let max = Number(input[startIndex])
+    let min = Number(data[startIndex])
+    let max = Number(data[startIndex])
 
     while (!foundWeakness) {
-        if (contiguousSum(startIndex, index, input) === invalidNumber) {
+        if (contiguousSum(startIndex, index, data) === invalidNumber) {
             foundWeakness = true
-            if (min > Number(input[index])) {
-                min = Number(input[index])
+            if (min > Number(data[index])) {
+                min = Number(data[index])
             }
-            if (max < Number(input[index])) {
-                max = Number(input[index])
+            if (max < Number(data[index])) {
+                max = Number(data[index])
             }
             break
         }
-        if (min > Number(input[index])) {
-            min = Number(input[index])
+        if (min > Number(data[index])) {
+            min = Number(data[index])
         }
-        if (max < Number(input[index])) {
-            max = Number(input[index])
+        if (max < Number(data[index])) {
+            max = Number(data[index])
         }
         index++
-        if (input[index] === undefined) {
+        if (data[index] === undefined) {
             startIndex++
             index = startIndex + 1
-            min = Number(input[startIndex])
-            max = Number(input[startIndex])
+            min = Number(data[startIndex])
+            max = Number(data[startIndex])
         }
     }
 

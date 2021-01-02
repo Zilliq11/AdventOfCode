@@ -4,29 +4,27 @@ const contestResponse = input => {
     // test 1 preamble = 5
     // test final preamble = 25
 
-    let preamble = 5
+    let preamble = input[0]
     let foundError = false
     let sumIndex = preamble
+    
+    let data = input.slice(2)
 
     while (!foundError) {
-        let numbers = input.slice(sumIndex - preamble, sumIndex).map(Number)
-        if (!pairExist (Number(input[sumIndex]), numbers)) {
+        let numbers = data.slice(sumIndex - preamble, sumIndex).map(Number)
+        if (!pairExist (Number(data[sumIndex]), numbers)) {
             break
         }
         sumIndex++
     }
 
-    result = input[sumIndex]
+    result = data[sumIndex]
     return result
 }
 
 function pairExist (sum, numbers) {
-    console.log('sum', sum)
-    console.log('numbers', numbers)
-
     for (const number of numbers) {
         let fillNumber = sum - number
-        console.log('fillNumber', fillNumber)
         if (numbers.includes(fillNumber) && number !== fillNumber) {
             return true
         }
